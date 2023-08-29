@@ -27,8 +27,14 @@ public class SearchByRanking implements Downloader.Scheme {
     public List<String> getArtworkIDs(RequestClient requestClient, int sourceLimit) {
         String norURL = "https://www.pixiv.net/ranking.php?mode=daily";
         String r18URL = norURL + "_18";
-        List<String> norIDList = this.parseIDs(requestClient, norURL).subList(0, sourceLimit / 2);
-        List<String> r18IDList = this.parseIDs(requestClient, r18URL).subList(0, sourceLimit / 2);
+        List<String> norIDList = this.parseIDs(requestClient, norURL);
+        List<String> r18IDList = this.parseIDs(requestClient, r18URL);
+        if (norIDList.size() > sourceLimit / 2) {
+            norIDList = norIDList.subList(0, sourceLimit / 2);
+        }
+        if (r18IDList.size() > sourceLimit / 2) {
+            r18IDList = r18IDList.subList(0, sourceLimit / 2);
+        }
         norIDList.addAll(r18IDList);
         return norIDList;
     }

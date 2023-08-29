@@ -26,7 +26,7 @@ public interface TaskID {
         @Override
         public boolean equals(Object obj) {
             if (obj instanceof Label other) {
-                return (this.tag == other.tag || Tag.BOTH == other.tag) && (this.format == other.format || Format.BOTH == other.format);
+                return (this.tag == Tag.BOTH || this.tag == other.tag) && (this.format == Format.BOTH && this.format == other.format);
             }
             return false;
         }
