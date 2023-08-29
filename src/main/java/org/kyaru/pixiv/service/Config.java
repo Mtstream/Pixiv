@@ -70,10 +70,10 @@ public class Config {
         public Setter setDefault(String cookie) {
             return this.setAcceptableLabel(TaskID.Label.Tag.BOTH, TaskID.Label.Format.BOTH)
                     .setArtworkCount(50)
-                    .setNormalArtworkPath("Artwork/NOR/%s")
-                    .setR18ArtworkPath("Artwork/R18/%s")
+                    .setNormalArtworkPath("Artwork/%s/NOR")
+                    .setR18ArtworkPath("Artwork/%s/R18")
                     .setCookie(cookie)
-                    .setProxy("127.0.0.7", 8080);
+                    .setProxy("-1", -1);
         }
 
         public Setter setArtworkCount(int count) {

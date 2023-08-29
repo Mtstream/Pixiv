@@ -3,6 +3,7 @@ package org.kyaru.pixiv.service.utils.requester;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHost;
@@ -25,22 +26,20 @@ public class RequestClient {
     }
 
     private CloseableHttpClient createHttpClient(String cookie, Proxy proxy) {
-        return HttpClients.custom()
+        HttpClientBuilder base = HttpClients.custom()
                 .setDefaultHeaders(
                         List.of(
                                 new BasicHeader("cookie", cookie),
                                 new BasicHeader("User-Agent", USER_AGENT),
                                 new BasicHeader("Referer", REFERER)
-                        )
-                )
+                        ))
                 .setDefaultRequestConfig(
                         RequestConfig.custom()
                                 .setConnectionRequestTimeout(60, TimeUnit.SECONDS)
                                 .setResponseTimeout(60, TimeUnit.SECONDS)
                                 .build()
-                )
-                .setProxy(proxy.toHttpHost())
-                .build();
+                );
+        return proxy.isValid() ? base.setProxy(proxy.toHttpHost()).build() : base.build();
     }
 
     private HttpEntity download(String httpUrl) {
@@ -74,6 +73,15 @@ public class RequestClient {
     }
 
     public record Proxy(String host, int port) {
+        public boolean isValid() {
+            try {
+                HttpClients.custom().setProxy(toHttpHost()).build().execute(new HttpGet(REFERER));
+            } catch (IOException e) {
+                return false;
+            }
+            return true;
+        }
+
         public static Proxy parseProxy(String str) {
             Matcher matcher = Pattern.compile("([^_]+)_([^_]+)").matcher(str);
             if (matcher.find()) {
