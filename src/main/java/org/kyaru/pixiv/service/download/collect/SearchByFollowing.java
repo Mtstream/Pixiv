@@ -16,9 +16,10 @@ public class SearchByFollowing implements Downloader.Scheme {
         for (int page = 1; page <= sumPage; page++) {
             urlList.add("https://www.pixiv.net/ajax/follow_latest/illust?p=%s&mode=all&lang=z".formatted(page));
         }
-        requestClient.download(urlList, ReturnType.STRING).forEach(json -> {
-            idList.addAll(JSONUtil.select(json, "body", "page", "ids").toStringList());
-        });
+        List<String> finalIdList = idList;
+        requestClient.download(urlList, ReturnType.STRING)
+                .forEach(json -> finalIdList.addAll(JSONUtil.select(json, "body", "page", "ids").toStringList()));
+        idList = idList.size() > sourceLimit ? idList.subList(0, sourceLimit) : idList;
         return idList;
     }
 

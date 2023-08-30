@@ -31,9 +31,9 @@ public class TaskPacker {
     public static TaskPacker getDefault(TaskContext taskContext) {
         TaskGetter initial = (l, tc) -> new LabelTask(tc.requestClient());
         TaskGetter afterLabeling = (l, tc) -> switch (l.format()) {
-            case IMG -> new IMGParseTask(tc.requestClient());
-            case GIF -> new GIFParseTask(tc.requestClient());
-            case BOTH -> VOID_TASK;
+                case IMG -> new IMGParseTask(tc.requestClient());
+                case GIF -> new GIFParseTask(tc.requestClient());
+                case BOTH -> null;
         };
         TaskGetter afterParsing = (l, tc) -> {
             String outputFilePath = switch (l.tag()) {
@@ -44,7 +44,7 @@ public class TaskPacker {
             return switch (l.format()) {
                 case IMG -> new IMGSaveTask(outputFilePath);
                 case GIF -> new GIFSaveTask(outputFilePath);
-                case BOTH -> VOID_TASK;
+                case BOTH -> null;
             };
         };
         TaskReferSet taskReferSet = new TaskReferSet() {
@@ -65,6 +65,8 @@ public class TaskPacker {
         if (taskID.label().equals(this.taskContext.acceptableLabel)) {
             this.taskEngine.run(this.taskReferSet.getOrDefault(taskID.step(), (p1, p2) -> VOID_TASK).getTask(taskID.label(), this.taskContext), taskID);
             System.out.println(taskID + " -> TaskEngine");
+        } else {
+            System.out.printf("%s, %s filtered%n", taskID, taskID.label());
         }
     }
 

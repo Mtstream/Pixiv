@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class SearchByAuthor implements Downloader.Scheme {
     private static final Pattern IDS_PATTERN = Pattern.compile("\\d+");
     private static final String GET_NAME_URL = "https://www.pixiv.net/users/%s";
-    private static final Pattern NAME_PATTERN = Pattern.compile("(.*?) - pixiv");
+    private static final Pattern NAME_PATTERN = Pattern.compile("(.*?).-.pixiv");
     private static final String GET_ID_URL = "https://www.pixiv.net/search_user.php?nick=%s&s_mode=s_usr";
     private static final Pattern ID_PATTERN = Pattern.compile("\\w+/(\\d+)");
     private static final String GET_NAME_XPATH = "//head/title/text()";
@@ -36,8 +36,8 @@ public class SearchByAuthor implements Downloader.Scheme {
         String another = jxDoc.selNOne(isArtworkID ? GET_NAME_XPATH : GET_ID_XPATH).asString();
         Matcher matcher = isArtworkID ? NAME_PATTERN.matcher(another) : ID_PATTERN.matcher(another);
         if (matcher.find()) {
-            this.authorID = isArtworkID ? this.authorInfo : another;
-            this.authorName = isArtworkID ? another : this.authorInfo;
+            this.authorID = isArtworkID ? this.authorInfo : matcher.group(1);
+            this.authorName = isArtworkID ? matcher.group(1) : this.authorInfo;
         }
     }
 
@@ -50,6 +50,7 @@ public class SearchByAuthor implements Downloader.Scheme {
         while (matcher.find()) {
             idList.add(matcher.group());
         }
+        idList = idList.size() > sourceLimit ? idList.subList(0, sourceLimit) : idList;
         return idList;
     }
 

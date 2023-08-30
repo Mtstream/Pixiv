@@ -9,15 +9,14 @@ public record TaskItem() {
     public record ArtworkID(String artworkID, TaskID.Step step, TaskID.Label label) implements TaskID {
         @Override
         public String toString() {
-            return "ArtworkID{%s} | %s ".formatted(artworkID, step);
+            return "%s | ArtworkID{%s}".formatted(step, artworkID);
         }
     }
 
-    public record SaveData(List<String> nameList, List<BufferedImage> imageList, TaskID.Step step,
-                           Label label) implements TaskID {
+    public record SaveData(List<String> nameList, List<BufferedImage> imageList, TaskID.Step step, Label label) implements TaskID {
         @Override
         public String toString() {
-            return "FileName{%s} | %s".formatted(nameList, step);
+            return "%s | %s".formatted(step, nameList);
         }
     }
 }

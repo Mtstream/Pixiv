@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GIFSaveTask implements TaskEngine.Task {
-    private static final Pattern DELAY_PATTERN = Pattern.compile("\\[GIFd(\\d+)].*?");
+    private static final Pattern DELAY_PATTERN = Pattern.compile("\\[GIF(\\d+)].*?");
     private final String outputPath;
 
     public GIFSaveTask(String outputPath) {

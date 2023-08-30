@@ -36,6 +36,7 @@ public class SearchByRanking implements Downloader.Scheme {
             r18IDList = r18IDList.subList(0, sourceLimit / 2);
         }
         norIDList.addAll(r18IDList);
+        norIDList = norIDList.size() > sourceLimit ? norIDList.subList(0, sourceLimit) : norIDList;
         return norIDList;
     }
 

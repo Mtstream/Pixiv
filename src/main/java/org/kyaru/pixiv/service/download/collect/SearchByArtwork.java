@@ -18,9 +18,10 @@ public class SearchByArtwork implements Downloader.Scheme {
     public List<String> getArtworkIDs(RequestClient requestClient, int sourceLimit) {
         String url = "https://www.pixiv.net/ajax/illust/%s/recommend/init?limit=%s&lang=zh".formatted(this.artworkInfo, sourceLimit);
         String json = requestClient.download(url, ReturnType.STRING);
-        List<String> artworkIDList = new ArrayList<>(List.of(artworkInfo));
-        artworkIDList.addAll(JSONUtil.select(json, "body", "illusts").toStringList());
-        return artworkIDList;
+        List<String> idList = new ArrayList<>(List.of(artworkInfo));
+        idList.addAll(JSONUtil.select(json, "body", "illusts").toStringList());
+        idList = idList.size() > sourceLimit ? idList.subList(0, sourceLimit) : idList;
+        return idList;
     }
 
     public String getFileName() {

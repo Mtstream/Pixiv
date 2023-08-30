@@ -1,10 +1,12 @@
 package org.kyaru.pixiv.service.download.parse.impl;
 
+import org.jsoup.Jsoup;
 import org.kyaru.pixiv.service.download.parse.TaskEngine;
 import org.kyaru.pixiv.service.download.parse.TaskID;
 import org.kyaru.pixiv.service.utils.jsonparser.JSONUtil;
 import org.kyaru.pixiv.service.utils.requester.RequestClient;
 import org.kyaru.pixiv.service.utils.requester.ReturnType;
+import org.seimicrawler.xpath.JXDocument;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -14,6 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.ZipInputStream;
 
 public class GIFParseTask implements TaskEngine.Task {
@@ -32,8 +36,14 @@ public class GIFParseTask implements TaskEngine.Task {
             }
         });
         int delayMs = (int) (delayList.stream().mapToDouble(Double::doubleValue).sum() / delayList.size());
-        String name = "[GIFd%s]%s.gif".formatted(delayMs, artworkID);
-        return Collections.singletonList(name);
+
+        String html = requestClient.download("https://www.pixiv.net/artworks/%s".formatted(artworkID), ReturnType.STRING);
+        String name = new JXDocument(Jsoup.parse(html).getAllElements()).selNOne("//head/title/text())").asString();
+        Matcher matcher = Pattern.compile("(.*?).-.*?的动图 - pixiv").matcher(name);
+        if (matcher.find()) {
+            name = matcher.group(1);
+        }
+        return Collections.singletonList( "[GIF%s]%s.gif".formatted(delayMs, name));
     }
 
     public List<BufferedImage> getSrcImages(String json) {
