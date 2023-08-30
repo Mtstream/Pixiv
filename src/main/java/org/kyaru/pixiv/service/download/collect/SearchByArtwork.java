@@ -8,7 +8,7 @@ import org.kyaru.pixiv.service.utils.requester.ReturnType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchByArtwork implements Downloader.Scheme {
+public class SearchByArtwork implements Downloader.Collector {
     private final String artworkInfo;
 
     public SearchByArtwork(String artworkInfo) {

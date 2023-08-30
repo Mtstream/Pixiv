@@ -2,7 +2,7 @@ package org.kyaru.pixiv.service;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.kyaru.pixiv.service.download.parse.TaskID;
+import org.kyaru.pixiv.service.download.process.TaskID;
 import org.kyaru.pixiv.service.utils.requester.RequestClient;
 
 import java.io.File;

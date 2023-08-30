@@ -8,7 +8,7 @@ import org.kyaru.pixiv.service.utils.requester.ReturnType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchByFollowing implements Downloader.Scheme {
+public class SearchByFollowing implements Downloader.Collector {
     public List<String> getArtworkIDs(RequestClient requestClient, int sourceLimit) {
         int sumPage = sourceLimit / 60 + 1;
         List<String> urlList = new ArrayList<>();

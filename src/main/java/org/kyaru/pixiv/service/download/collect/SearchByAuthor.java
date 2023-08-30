@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SearchByAuthor implements Downloader.Scheme {
+public class SearchByAuthor implements Downloader.Collector {
     private static final Pattern IDS_PATTERN = Pattern.compile("\\d+");
     private static final String GET_NAME_URL = "https://www.pixiv.net/users/%s";
     private static final Pattern NAME_PATTERN = Pattern.compile("(.*?).-.pixiv");

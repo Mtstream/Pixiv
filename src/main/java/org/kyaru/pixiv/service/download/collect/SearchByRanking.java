@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SearchByRanking implements Downloader.Scheme {
+public class SearchByRanking implements Downloader.Collector {
     private static final Pattern ID_PATTERN = Pattern.compile("\"data-type=\".*?\"data-id=\"(.*?)\"");
 
     public SearchByRanking() {
