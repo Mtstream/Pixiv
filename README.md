@@ -13,7 +13,7 @@
      | *自定义下载目标*        | `.byCustom(List<String> idList, String fileName)` |
 
 - ##  [下载前配置]()
-- ### 任务配置接口(必须配置)
+  ### 任务配置接口(必须配置)
       通过pixiv.taskConfig().来访问配置接口
     | 方法                                      | 描述                                        |
     |-------------------------------------------|---------------------------------------------|
@@ -23,19 +23,19 @@
     | `.confirm()`                              | **保存**你的任务配置，配置会以文件路径形式返回                 |
 
 
- - ### 过滤器配置接口 (可选配置)
+  ### 过滤器配置接口 (可选配置)
        通过pixiv.filterConfig().来访问配置接口
-      | 方法                                        | 描述                                   |
-      |-------------------------------------------|--------------------------------------|
-      | `.setExpectBookmarks(int count)`          | 屏蔽**收藏数**小于count的作品                  |
-      | `.setExpectLikes(int count)`              | 屏蔽**点赞数**小于count的作品                  |
-      | `.setExpectViews(int count)`              | 屏蔽**浏览数**小于count的作品                  |
-      | `.setDateAfter(String yyyy-MM-dd)`        | 屏蔽**发布时间在date之前**的作品                 |
-      | `.setDateBefore(String yyyy-MM-dd)`       | 屏蔽**发布时间在date之前**的作品                 |
-      | `.setWhitelistTag(String tags...)`        | 屏蔽**不含有tags**的作品                     |
-      | `.setBlacklistTag(String tags...)`        | 屏蔽**含有tags**的作品                      |
-      | `.setExpectLabel(Tag tag, Format format)` | 屏蔽非Tag(NOR, R18)&Format(IMG, GIF)的作品 |
-      | `.confirm()`                              | **保存**你的过滤器配置，配置会以文件路径形式返回           |
+   | 方法                                        | 描述                                   |
+   |-------------------------------------------|--------------------------------------|
+   | `.setExpectBookmarks(int count)`          | 屏蔽**收藏数**小于count的作品                  |
+   | `.setExpectLikes(int count)`              | 屏蔽**点赞数**小于count的作品                  |
+   | `.setExpectViews(int count)`              | 屏蔽**浏览数**小于count的作品                  |
+   | `.setDateAfter(String yyyy-MM-dd)`        | 屏蔽**发布时间在date之前**的作品                 |
+   | `.setDateBefore(String yyyy-MM-dd)`       | 屏蔽**发布时间在date之前**的作品                 |
+   | `.setWhitelistTag(String tags...)`        | 屏蔽**不含有tags**的作品                     |
+   | `.setBlacklistTag(String tags...)`        | 屏蔽**含有tags**的作品                      |
+   | `.setExpectLabel(Tag tag, Format format)` | 屏蔽非Tag(NOR, R18)&Format(IMG, GIF)的作品 |
+   | `.confirm()`                              | **保存**你的过滤器配置，配置会以文件路径形式返回           |
 
 - ## [使用例]()
 ```java
