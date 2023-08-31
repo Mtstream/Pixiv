@@ -2,43 +2,40 @@
 - ## [简介]()
 该库旨在提供一个接口，用于下载**下载[Pixiv](https://www.pixiv.net)艺术作品**。  
 您可以轻松地调用该集成库，将特定的艺术作品下载到**本地文件夹**，以供AI训练等用途。
-- ## [主要功能接口]()
-      通过pixiv.download().来访问下载接口
-| 功能                | 方法                                                |
-|-------------------|---------------------------------------------------|
-  | *根据作者ID或名字下载艺术作品* | `.byAuthor(int artworkCount, String author)`      |
-| *根据艺术作品下载相似艺术作品*  | `.byArtwork(int artworkCount, String artworkID)`  |
-| *根据当日排行榜下载艺术作品*   | `.byRanking(int artworkCount)`                    |
-| *根据已关注作者下载艺术作品*   | `.byAuthor(int artworkCount)`                     |
-| *自定义下载目标*         | `.byCustom(List<String> idList, String fileName)` |
+ - ## [主要功能接口]()
+       通过pixiv.download().来访问下载接口
+     | 功能                | 方法                                                |
+     |---------------------------------------------------|---------------------------------------------------|
+     | *根据作者ID或名字下载艺术作品* | `.byAuthor(int artworkCount, String author)`      
+     | *根据艺术作品下载相似艺术作品*  | `.byArtwork(int artworkCount, String artworkID)`  |
+     | *根据当日排行榜下载艺术作品*   | `.byRanking(int artworkCount)`                    |
+     | *根据已关注作者下载艺术作品*   | `.byAuthor(int artworkCount)`                     |
+     | *自定义下载目标*        | `.byCustom(List<String> idList, String fileName)` |
 
 - ##  [下载前配置]()
----
 - ### 任务配置接口(必须配置)
-
       通过pixiv.taskConfig().来访问配置接口
-| 方法                                        | 描述                        |
-|-------------------------------------------|---------------------------|
-| `.setNormalArtworkPath(String filePath)`  | 你下载的**全年龄内容**将出现在该文件夹里    |
-| `.setNormalArtworkPath(String filePath)`  | 你下载的**成人内容**将出现在该文件夹里     |
-| `.setCookie(String cookie)`               | 设置**用于登陆pixiv的cookie**    |
-| `.setProxy(String host, int port)`        | 设置**网络代理**(如需要)           |
-| `.confirm()`                              | **保存**你的任务配置，配置会以文件路径形式返回 |
+    | 方法                                      | 描述                                        |
+    |-------------------------------------------|---------------------------------------------|
+    | `.setNormalArtworkPath(String filePath)`  | 你下载的**全年龄内容**将出现在该文件夹里                    |
+    | `.setCookie(String cookie)`               | 设置**用于登陆pixiv的cookie**                    |
+    | `.setProxy(String host, int port)`        | 设置**网络代理**(如需要)                           |
+    | `.confirm()`                              | **保存**你的任务配置，配置会以文件路径形式返回                 |
 
 
  - ### 过滤器配置接口 (可选配置)
        通过pixiv.filterConfig().来访问配置接口
-| 方法                                        | # 描述                                 |
-|-------------------------------------------|--------------------------------------|
-| `.setExpectBookmarks(int count)`          | 屏蔽**收藏数**小于count的作品                  |
-| `.setExpectLikes(int count)`              | 屏蔽**点赞数**小于count的作品                  |
-| `.setExpectViews(int count)`              | 屏蔽**浏览数**小于count的作品                  |
-| `.setDateAfter(String yyyy-MM-dd)`        | 屏蔽**发布时间在date之前**的作品                 |
-| `.setDateBefore(String yyyy-MM-dd)`       | 屏蔽**发布时间在date之前**的作品                 |
-| `.setWhitelistTag(String tags...)`        | 屏蔽**不含有tags**的作品                     |
-| `.setBlacklistTag(String tags...)`        | 屏蔽**含有tags**的作品                      |
-| `.setExpectLabel(Tag tag, Format format)` | 屏蔽非Tag(NOR, R18)&Format(IMG, GIF)的作品 |
-| `.confirm()`                              | **保存**你的过滤器配置，配置会以文件路径形式返回           |
+      | 方法                                        | 描述                                   |
+      |-------------------------------------------|--------------------------------------|
+      | `.setExpectBookmarks(int count)`          | 屏蔽**收藏数**小于count的作品                  |
+      | `.setExpectLikes(int count)`              | 屏蔽**点赞数**小于count的作品                  |
+      | `.setExpectViews(int count)`              | 屏蔽**浏览数**小于count的作品                  |
+      | `.setDateAfter(String yyyy-MM-dd)`        | 屏蔽**发布时间在date之前**的作品                 |
+      | `.setDateBefore(String yyyy-MM-dd)`       | 屏蔽**发布时间在date之前**的作品                 |
+      | `.setWhitelistTag(String tags...)`        | 屏蔽**不含有tags**的作品                     |
+      | `.setBlacklistTag(String tags...)`        | 屏蔽**含有tags**的作品                      |
+      | `.setExpectLabel(Tag tag, Format format)` | 屏蔽非Tag(NOR, R18)&Format(IMG, GIF)的作品 |
+      | `.confirm()`                              | **保存**你的过滤器配置，配置会以文件路径形式返回           |
 
 - ## [使用例]()
 ```java
