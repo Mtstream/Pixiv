@@ -33,17 +33,17 @@ ___
 
 > #### 通过pixiv.filterConfig().来访问配置接口
 
-| 方法                                        | # 描述                                     |
-|-------------------------------------------|------------------------------------------|
-| `.setExpectBookmarks(int count)`          | 抛弃收藏数小于count的作品                          |
-| `.setExpectLikes(int count)`              | 抛弃点赞数小于count的作品                          |
-| `.setExpectViews(int count)`              | 抛弃浏览数小于count的作品                          |
-| `.setDateAfter(String yyyy-MM-dd)`        | 抛弃发布时间在date之前的作品                         |
-| `.setDateBefore(String yyyy-MM-dd)`       | 抛弃发布之后在date之前的作品                         |
-| `.setWhitelistTag(String tags...)`        | 抛弃不含有tags的作品                             |
-| `.setBlacklistTag(String tags...)`        | 抛弃含有tags的作品                              |
-| `.setExpectLabel(Tag tag, Format format)` | 抛弃不属于Tag(NOR, R18) & Format(IMG, GIF)的作品 |
-| `.confirm()`                              | 记得保存你的过滤器配置，配置会以文件路径形式返回                 |
+| 方法                                        | # 描述                                   |
+|-------------------------------------------|----------------------------------------|
+| `.setExpectBookmarks(int count)`          | 屏蔽收藏数小于count的作品                        |
+| `.setExpectLikes(int count)`              | 屏蔽点赞数小于count的作品                        |
+| `.setExpectViews(int count)`              | 屏蔽浏览数小于count的作品                        |
+| `.setDateAfter(String yyyy-MM-dd)`        | 屏蔽发布时间在date之前的作品                       |
+| `.setDateBefore(String yyyy-MM-dd)`       | 屏蔽发布时间在date之前的作品                       |
+| `.setWhitelistTag(String tags...)`        | 屏蔽不含有tags的作品                           |
+| `.setBlacklistTag(String tags...)`        | 屏蔽含有tags的作品                            |
+| `.setExpectLabel(Tag tag, Format format)` | 屏蔽非Tag(NOR, R18) & Format(IMG, GIF)的作品 |
+| `.confirm()`                              | 记得保存你的过滤器配置，配置会以文件路径形式返回               |
 
 使用例
  ---
