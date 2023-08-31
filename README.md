@@ -5,7 +5,7 @@ ___
 - ## [简介]()
 
 该库旨在提供一个接口，用于下载**下载[Pixiv](https://www.pixiv.net)艺术作品**。  
-您可以轻松地调用该集成库，将特定的艺术作品下载到本地文件夹，以供AI训练等用途使用。
+您可以轻松地调用该集成库，将特定的艺术作品下载到**本地文件夹**，以供AI训练等用途使用。
 ___
 - ### [主要功能接口]()
 ---
@@ -23,30 +23,30 @@ ___
 ### 任务配置接口(必须配置)
 > #### 通过pixiv.taskConfig().来访问配置接口
 
-| 方法                                        |  描述                     |
-|-------------------------------------------|-------------------------|
-| `.setNormalArtworkPath(String filePath)`  | 你下载的全年龄内容将出现在该文件夹里      |
-| `.setNormalArtworkPath(String filePath)`  | 你下载的成人内容将出现在该文件夹里       |
-| `.setCookie(String cookie)`               | 设置可用于登陆pixiv的cookie     |
-| `.setProxy(String host, int port)`        | 设置网络代理(如需要)             |
-| `.confirm()`                              | 记得保存你的任务配置，配置会以文件路径形式返回 |
+| 方法                                        | 描述                        |
+|-------------------------------------------|---------------------------|
+| `.setNormalArtworkPath(String filePath)`  | 你下载的**全年龄内容**将出现在该文件夹里    |
+| `.setNormalArtworkPath(String filePath)`  | 你下载的**成人内容**将出现在该文件夹里     |
+| `.setCookie(String cookie)`               | 设置**用于登陆pixiv的cookie**    |
+| `.setProxy(String host, int port)`        | 设置**网络代理**(如需要)           |
+| `.confirm()`                              | **保存**你的任务配置，配置会以文件路径形式返回 |
 
 
 - ### [过滤器配置接口]() (可选配置)
 ---
 > #### 通过pixiv.filterConfig().来访问配置接口
 
-| 方法                                        | # 描述                                   |
-|-------------------------------------------|----------------------------------------|
-| `.setExpectBookmarks(int count)`          | 屏蔽收藏数小于count的作品                        |
-| `.setExpectLikes(int count)`              | 屏蔽点赞数小于count的作品                        |
-| `.setExpectViews(int count)`              | 屏蔽浏览数小于count的作品                        |
-| `.setDateAfter(String yyyy-MM-dd)`        | 屏蔽发布时间在date之前的作品                       |
-| `.setDateBefore(String yyyy-MM-dd)`       | 屏蔽发布时间在date之前的作品                       |
-| `.setWhitelistTag(String tags...)`        | 屏蔽不含有tags的作品                           |
-| `.setBlacklistTag(String tags...)`        | 屏蔽含有tags的作品                            |
-| `.setExpectLabel(Tag tag, Format format)` | 屏蔽非Tag(NOR, R18) & Format(IMG, GIF)的作品 |
-| `.confirm()`                              | 记得保存你的过滤器配置，配置会以文件路径形式返回               |
+| 方法                                        | # 描述                                 |
+|-------------------------------------------|--------------------------------------|
+| `.setExpectBookmarks(int count)`          | 屏蔽**收藏数**小于count的作品                  |
+| `.setExpectLikes(int count)`              | 屏蔽**点赞数**小于count的作品                  |
+| `.setExpectViews(int count)`              | 屏蔽**浏览数**小于count的作品                  |
+| `.setDateAfter(String yyyy-MM-dd)`        | 屏蔽**发布时间在date之前**的作品                 |
+| `.setDateBefore(String yyyy-MM-dd)`       | 屏蔽**发布时间在date之前**的作品                 |
+| `.setWhitelistTag(String tags...)`        | 屏蔽**不含有tags**的作品                     |
+| `.setBlacklistTag(String tags...)`        | 屏蔽**含有tags**的作品                      |
+| `.setExpectLabel(Tag tag, Format format)` | 屏蔽非Tag(NOR, R18)&Format(IMG, GIF)的作品 |
+| `.confirm()`                              | **保存**你的过滤器配置，配置会以文件路径形式返回           |
 
 - ## [使用例]()
  ---
@@ -93,14 +93,14 @@ public class Test {
 - ## [备注事项]()
 ---
 ### 1. 如何查看cookie？
-> **step 1:** 使用任意浏览器登陆[Pixiv](https://www.pixiv.net)并进入主页面  
-> **step 2:** 在上方网址输入框输入`javascript:alert(document.cookie)`并确定 (由于javascript:会被自动清除，请务必手动输入)  
-> **step 3:** 全选方框的内容并复制，将其并传入pixiv的setCookie方法中
+> - **step 1:** 使用任意浏览器登陆[Pixiv](https://www.pixiv.net)并进入主页面  
+> -  **step 2:** 在上方网址输入框输入`javascript:alert(document.cookie)`并确定 (*由于javascript:会被自动清除，请务必手动输入*)  
+> -  **step 3:** 弹出的方框内容便是您的有效cookie，全选并复制粘贴至pixiv的setCookie方法中
 ### 2. Pixiv库的配置是如何工作的？文件需要提前配置吗？
-> 1. Pixiv类的构造参数(Path settingFilePath)的目的在于预设配置文件位置，这意味着您无需提前配置好文件，甚至不需要提前创建好文件。   
+> - Pixiv类的构造参数(Path settingFilePath)的目的在于预设配置文件位置，这意味着您**无需提前配置文件，甚至不需要提前创建文件**。   
 > 创建与配置工作将分别在构造方法与filterConfig(), taskConfig()方法中完成，并储存于您预设的配置文件中。  
-> 2. 若您需要修改已存在的配置文件，则需要将配置文件的路径作为构造参数传入并创建Pixiv对象，并在该对象的filterConfig()与taskConfig()方法中修改你的配置。
-> 3. 若您需要加载并使用已有配置，请将预设配置文件的路径传入Pixiv的构造方法中，并调用Pixiv的download()方法。
+> - 若您需要修改已存在的配置文件，则需要**将配置文件的路径传入Pixiv的构造方法**中，并在该对象的filterConfig()与taskConfig()方法中修改你的配置。
+> - 若您需要加载并使用已有配置，请**将预设配置文件的路径传入Pixiv的构造方法**中，并调用Pixiv的download()方法。
 
 - ## [安装]()
 ---
