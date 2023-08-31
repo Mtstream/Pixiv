@@ -7,7 +7,6 @@ ___
 您可以轻松地调用该集成库，将特定的艺术作品下载到**本地文件夹**，以供AI训练等用途。
 ___
 - ## [主要功能接口]()
----
       ### 通过pixiv.download().来访问下载接口
 | 功能                | 方法                                                |
 |-------------------|---------------------------------------------------|
@@ -20,9 +19,8 @@ ___
 - ##  [下载前配置]()
 ---
 - ### 任务配置接口(必须配置)
----
-    通过pixiv.taskConfig().来访问配置接口
 
+      通过pixiv.taskConfig().来访问配置接口
 | 方法                                        | 描述                        |
 |-------------------------------------------|---------------------------|
 | `.setNormalArtworkPath(String filePath)`  | 你下载的**全年龄内容**将出现在该文件夹里    |
@@ -33,9 +31,7 @@ ___
 
 
  - ### 过滤器配置接口 (可选配置)
- - ---
-    通过pixiv.filterConfig().来访问配置接口
-
+       通过pixiv.filterConfig().来访问配置接口
 | 方法                                        | # 描述                                 |
 |-------------------------------------------|--------------------------------------|
 | `.setExpectBookmarks(int count)`          | 屏蔽**收藏数**小于count的作品                  |
@@ -49,7 +45,6 @@ ___
 | `.confirm()`                              | **保存**你的过滤器配置，配置会以文件路径形式返回           |
 
 - ## [使用例]()
- ---
 ```java
 import org.kyaru.pixiv.service.Pixiv;
 import org.kyaru.pixiv.service.body.process.TaskID;
@@ -91,7 +86,6 @@ public class Test {
 }
 ```
 - ## [备注事项]()
----
 ### 1. 如何查看cookie？
 > - **step 1:** 使用任意浏览器登陆[Pixiv](https://www.pixiv.net)并进入主页面  
 > -  **step 2:** 在上方网址输入框输入`javascript:alert(document.cookie)`并确定 (*由于javascript:会被自动清除，请务必手动输入*)  
@@ -103,7 +97,6 @@ public class Test {
 > - 若您需要加载并使用已有配置，请**将预设配置文件的路径传入Pixiv的构造方法**中，并调用Pixiv的download()方法。
 
 - ## [安装]()
----
 1. 下载[jar](https://github.com/Ita-Ya/Pixiv/releases/download/lib/pixiv-1.0-SNAPSHOT.jar)包。
 2. 将 jar 放入项目的 libs 文件夹 (如无则新建文件夹)
 3. 在项目依赖中添加 jar  
