@@ -18,7 +18,7 @@ public class Pixiv {
     public TaskConfig.Builder taskConfig() {
         return this.taskConfig;
     }
-    public FilterConfig.Builder FilterConfig() {
+    public FilterConfig.Builder filterConfig() {
         return this.filterConfig;
     }
 

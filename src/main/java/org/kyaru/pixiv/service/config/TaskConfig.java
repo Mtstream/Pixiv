@@ -35,8 +35,10 @@ public record TaskConfig(Path settingFile) {
 
     public static class Builder {
         private final FileOperator file;
+        private JSONObject jsonObject ;
         public Builder(Path settingFile) {
             this.file = new FileOperator(settingFile);
+            this.jsonObject = file.read();
         }
 
         public Builder setDefault(String cookie) {
@@ -64,13 +66,12 @@ public record TaskConfig(Path settingFile) {
         }
 
         private Builder set(JSON_KEY key, String value) {
-            JSONObject object = this.file.read();
-            object.put(key.path, value);
-            this.file.write(object);
+            this.jsonObject.put(key.path, value);
             return this;
         }
 
         public Path confirm() {
+            this.file.write(this.jsonObject);
             return this.file.filePath();
         }
     }
