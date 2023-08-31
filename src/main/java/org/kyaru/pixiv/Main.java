@@ -1,13 +1,9 @@
 package org.kyaru.pixiv;
 
 import org.kyaru.pixiv.service.Pixiv;
-import org.kyaru.pixiv.service.body.collect.Collector;
 import org.kyaru.pixiv.service.body.process.TaskID;
-import org.kyaru.pixiv.service.utils.network.RequestClient;
 
 import java.nio.file.Path;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -28,13 +24,13 @@ public class Main {
                 .setDateAfter("2020-01-01")
                 .setDateBefore("2030-01-01")
                 .setExpectLabel(TaskID.Label.Tag.R18, TaskID.Label.Format.IMG)
-                .setBlacklistTag(List.of("猎奇"))
-                .setWhitelistTag(List.of("ガーターベルト", "ブルーアーカイブ"))
+                .setBlacklistTag("猎奇", "")
+                .setWhitelistTag("ガーターベルト", "ブルーアーカイブ")
                 .confirm();
 
         pixiv.download()
-                .byAuthor(50, "target author's ID or Name")
-                .byArtwork(50, "target artwork's ID")
+                .byAuthor(50, "target author ID or Name")
+                .byArtwork(50, "target artwork ID")
                 .byRanking(50)
                 .byFollowing(50)
                 .byCustom(List.of("artworkID..."),"fileName");

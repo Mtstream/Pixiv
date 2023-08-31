@@ -77,11 +77,11 @@ public record FilterConfig(Path settingFile) {
             }
         }
 
-        public Builder setWhitelistTag(List<String> tags) {
+        public Builder setWhitelistTag(String... tags) {
             return set(JSON_KEY.TAG_WHITELIST, StringUtil.join(tags, ","));
         }
 
-        public Builder setBlacklistTag(List<String> tags) {
+        public Builder setBlacklistTag(String... tags) {
             return set(JSON_KEY.TAG_BLACKLIST, StringUtil.join(tags, ","));
         }
 
