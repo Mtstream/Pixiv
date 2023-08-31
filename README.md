@@ -102,11 +102,11 @@ public class Test {
 
 安装
 ---
-1. 点击[Release](https://github.com/Ita-Ya/Pixiv/releases/download/lib/pixiv-1.0-SNAPSHOT.jar)下载jar包。
-2. 在您的项目目录下创建libs文件夹，并将您在step 1下载的jar包导入进libs文件夹 
-3. 添加配置进项目配置文件中  
-*如果您使用 Maven，将以下代码片段添加到 pom.xml 文件的 <dependencies> 标签中:*  
-   ```
+1. 下载[jar](https://github.com/Ita-Ya/Pixiv/releases/download/lib/pixiv-1.0-SNAPSHOT.jar)包。
+2. 将 jar 放入项目的 libs 文件夹 (如无则新建文件夹)
+3. 在项目依赖中添加 jar  
+   Maven
+   ```xml
    <dependency>
        <groupId>org.kyaru</groupId>
        <artifactId>pixiv</artifactId>
@@ -115,13 +115,12 @@ public class Test {
        <systemPath>${project.basedir}/libs/library.jar</systemPath>
    </dependency>
    ```
-   *如果您使用 Gradle，将以下代码片段添加到 build.gradle 文件的 dependencies 部分：*
-   ```
+   Gradle
+   ```groovy
    dependencies {
    implementation files('pixiv-1.0-SNAPSHOT.jar')
    }
    ```
-4.保存配置文件 (安装完成)
 
 
 
