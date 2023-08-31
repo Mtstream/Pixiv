@@ -14,7 +14,7 @@
 
 # Pixiv-Downloader-Lib
 ## 简介
-该库旨在提供一个接口，用于下载**下载[Pixiv](https://www.pixiv.net)艺术作品**。  
+该库旨在提供**下载[Pixiv](https://www.pixiv.net)艺术作品**的接口。  
 您可以轻松地调用该集成库，将特定的艺术作品下载到**本地文件夹**，以供AI训练等用途。
 ## 安装库
 1. 下载 [jar](https://github.com/Ita-Ya/Pixiv/releases/download/lib/pixiv-1.0-SNAPSHOT.jar) 包。
