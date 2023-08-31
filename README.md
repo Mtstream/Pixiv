@@ -4,17 +4,23 @@
       <code>选择语言</code>
     </summary>
     <br/>
-    <a href="中文readme的url">中文</a>
+    <a href="https://github.com/Ita-Ya/Pixiv/blob/main/README.md">中文</a>
     <br/>
-    <a href="英文readme的url">English</a>
+    English（未完成
     <br/>
-    <a href="日語readme的url">日本語</a>
+    日本語（未完成
   </details>
 </blockquote>
 
 # Pixiv-Downloader-Lib
+- [简介](#简介)
+- [安装库](#安装库)
+- [下载前配置](#下载前配置)
+- [使用例](#使用例)
+- [常见问题](#常见问题)
+
 ## 简介
-该库旨在提供用于**下载[Pixiv](https://www.pixiv.net)艺术作品**的接口。  
+该库旨在提供用于**下载 [Pixiv](https://www.pixiv.net) 艺术作品**的接口。  
 您可以轻松地调用该集成库，将特定的艺术作品下载到**本地文件夹**，以供AI训练等用途。
 ## 安装库
 1. 下载 [jar](https://github.com/Ita-Ya/Pixiv/releases/download/lib/pixiv-1.0-SNAPSHOT.jar) 包。
@@ -37,22 +43,25 @@
    ```
 
 ## 下载前配置
-`Pixiv pixiv = new Pixiv("预设配置文件路径")`  
-###  [任务配置接口(必须配置)]()
-> 在开始下载作品前，你必须提供**作品储存路径** 与 **有效Cookie**  
+首先需要創建一個 Pixiv 對象
+```java
+Pixiv pixiv = new Pixiv("预设配置文件路径")
+```
+###  任务配置接口(必须配置)
+在开始下载作品前，你必须提供**作品储存路径** 与 **有效 Cookie**  
 
-请通过`pixiv.taskConfig()`来访问任务配置接口
+请通过 `pixiv.taskConfig()` 来访问任务配置接口
 
 | 方法                                        |  描述                   |
 |-------------------------------------------|-----------------------|
 | `.setNormalArtworkPath(String filePath)`  | 你下载的全年龄内容将出现在该文件夹里    |
 | `.setNormalArtworkPath(String filePath)`  | 你下载的成人内容将出现在该文件夹里     |
-| `.setCookie(String cookie)`               | 设置可用于登陆pixiv的cookie   |
+| `.setCookie(String cookie)`               | 设置可用于登陆 pixiv 的 cookie   |
 | `.setProxy(String host, int port)`        | 设置网络代理(如需要)           |
 | `.confirm()`                              | 保存你的任务配置，并以配置文件路径形式返回 |
 
-### [配置过滤器（可选配置)]()
-> 你可以通过配置过滤器来设置作品标准，只有符合标准的作品会被下载至本地。
+### 配置过滤器（可选配置)
+你可以通过配置过滤器来设置作品标准，只有符合标准的作品会被下载至本地。
 
 请通过 `pixiv.filterConfig().` 来访问过滤器配置接口
 
@@ -69,7 +78,7 @@
 | `.confirm()`                              | 保存你的过滤器配置，并以配置文件路径形式返回                                                                                                                                                    |
 
 ### 下载
-> 完成配置后，您便可以开始下载作品了。  
+完成配置后，您便可以开始下载作品了。  
 
 请通过 `pixiv.download().` 来访问下载接口，调用方法后立即开始下载。
 
@@ -81,7 +90,7 @@
 | 根据已关注作者下载艺术作品    | `.byAuthor(int artworkCount)`                     |
 | 自定义下载目标          | `.byCustom(List<String> idList, String fileName)` |
 
-## Example
+## 使用例
 ```java
 import org.kyaru.pixiv.service.Pixiv;
 import org.kyaru.pixiv.service.body.process.TaskID;
@@ -122,15 +131,15 @@ public class Test {
     }
 }
 ```
-## Q&A
+## 常见问题
 ___
-### 1. 如何查看cookie？
-> - **step 1** 使用浏览器登陆pixiv并进入主页面  
-> - **step 2** 在上方网址输入框输入`javascript:alert(document.cookie)` (由于javascript:会被自动清除，请务必手动输入)  
-> - **step 3** 全选方框的内容并复制，将其并传入pixiv的setCookie方法中
+### 1. 如何查看 cookie？
+- **step 1** 使用浏览器登陆pixiv并进入主页面  
+- **step 2** 在上方网址输入框输入`javascript:alert(document.cookie)` (由于 javascript: 会被自动清除，请务必手动输入)  
+- **step 3** 全选方框的内容并复制，将其并传入 pixiv 的 setCookie 方法中
 
 ### 2. Pixiv库的配置是如何工作的？文件需要提前配置吗？
-> 1. Pixiv类的构造参数(Path settingFilePath)的目的在于预设配置文件位置，这意味着您无需提前配置好文件，甚至不需要提前创建好文件。  
-   创建与配置工作将分别在构造方法与filterConfig(), taskConfig()方法中完成，并储存于您预设的配置文件中。 
-> 2. 若您需要修改已存在的配置文件，则需要将配置文件的路径作为构造参数传入并创建Pixiv对象，并在该对象的filterConfig()与taskConfig()方法中修改你的配置。  
-> 3. 若您需要加载并使用已有配置，请将预设配置文件的路径传入Pixiv的构造方法中，并调用Pixiv的download()方法。
+1. Pixiv 类的构造参数 `(Path settingFilePath)` 的目的在于预设配置文件位置，这意味着您无需提前配置好文件，甚至不需要提前创建好文件。  
+   创建与配置工作将分别在构造方法与 `filterConfig()`, `taskConfig()` 方法中完成，并储存于您预设的配置文件中。 
+2. 若您需要修改已存在的配置文件，则需要将配置文件的路径作为构造参数传入并创建 Pixiv 对象，并在该对象的 `filterConfig()` 与 `taskConfig()` 方法中修改你的配置。  
+3. 若您需要加载并使用已有配置，请将预设配置文件的路径传入Pixiv的构造方法中，并调用 Pixiv 的 `download()` 方法。
