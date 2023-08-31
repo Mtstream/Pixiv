@@ -1,11 +1,13 @@
 # Pixiv-Downloader-Lib
 ___
-## 简介
+
+
+- ## [简介]()
 
 该库旨在提供一个接口，用于下载**下载[Pixiv](https://www.pixiv.net)艺术作品**。  
 您可以轻松地调用该集成库，将特定的艺术作品下载到本地文件夹，以供AI训练等用途使用。
 ___
-主要功能接口
+- ### [主要功能接口]()
 ---
 > #### 通过pixiv.download().来访问下载接口
 | 功能                | 方法                                                |
@@ -16,7 +18,7 @@ ___
 | *根据已关注作者下载艺术作品*   | `.byAuthor(int artworkCount)`                     |
 | *自定义下载目标*         | `.byCustom(List<String> idList, String fileName)` |
 
-下载前配置
+- ###  [下载前配置]()
 ---
 ### 任务配置接口(必须配置)
 > #### 通过pixiv.taskConfig().来访问配置接口
@@ -30,8 +32,8 @@ ___
 | `.confirm()`                              | 记得保存你的任务配置，配置会以文件路径形式返回 |
 
 
-### 过滤器配置接口(可选配置)
-
+- ### [过滤器配置接口]() (可选配置)
+---
 > #### 通过pixiv.filterConfig().来访问配置接口
 
 | 方法                                        | # 描述                                   |
@@ -46,7 +48,7 @@ ___
 | `.setExpectLabel(Tag tag, Format format)` | 屏蔽非Tag(NOR, R18) & Format(IMG, GIF)的作品 |
 | `.confirm()`                              | 记得保存你的过滤器配置，配置会以文件路径形式返回               |
 
-使用例
+- ## [使用例]()
  ---
 ```java
 import org.kyaru.pixiv.service.Pixiv;
@@ -88,7 +90,7 @@ public class Test {
     }
 }
 ```
-备注事项
+- ## [备注事项]()
 ---
 ### 1. 如何查看cookie？
 > **step 1:** 使用任意浏览器登陆[Pixiv](https://www.pixiv.net)并进入主页面  
@@ -100,7 +102,7 @@ public class Test {
 > 2. 若您需要修改已存在的配置文件，则需要将配置文件的路径作为构造参数传入并创建Pixiv对象，并在该对象的filterConfig()与taskConfig()方法中修改你的配置。
 > 3. 若您需要加载并使用已有配置，请将预设配置文件的路径传入Pixiv的构造方法中，并调用Pixiv的download()方法。
 
-安装
+- ## [安装]()
 ---
 1. 下载[jar](https://github.com/Ita-Ya/Pixiv/releases/download/lib/pixiv-1.0-SNAPSHOT.jar)包。
 2. 将 jar 放入项目的 libs 文件夹 (如无则新建文件夹)
@@ -121,6 +123,7 @@ public class Test {
    implementation files('pixiv-1.0-SNAPSHOT.jar')
    }
    ```
+   
 
 
 
