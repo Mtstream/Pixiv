@@ -1,8 +1,9 @@
 # Pixiv-Downloader-Lib
 ___
 ## 简介
-该库旨在提供**下载[Pixiv](https://www.pixiv.net)艺术作品**的接口，
-你可以轻松地调用该集成库，以将特定艺术作品下载至本地文件夹并用于AI训练等用途。
+
+该库旨在提供一个接口，用于下载**下载[Pixiv](https://www.pixiv.net)艺术作品**。  
+您可以轻松地调用该集成库，将特定的艺术作品下载到本地文件夹，以供AI训练等用途使用。
 ___
 主要功能接口
 ---
@@ -71,8 +72,8 @@ public class Test {
                 .setExpectBookmarks(5000) //设置最低收藏量
                 .setDateBefore("yyyy-MM-dd") //设置最晚发布时间
                 .setDateAfter("yyyy-MM-dd")  //设置最早发布时间
-                .setWhitelistTag("", "") //设置白名单标签
-                .setBlacklistTag("", "") //设置黑名单标签
+                .setWhitelistTag("tag1", "tag2") //设置白名单标签
+                .setBlacklistTag("tag3", "tag4") //设置黑名单标签
                 .setExpectLabel(TaskID.Label.Tag.R18, TaskID.Label.Format.GIF) //设置仅下载成人动图
                 .confirm();
         
@@ -89,17 +90,38 @@ public class Test {
 ```
 备注事项
 ---
-1. Pixiv类的构造参数(Path settingFilePath)的目的在于预设配置文件位置，这意味着您无需提前配置好文件，甚至不需要提前创建好文件。   
-创建与配置工作将分别在构造方法与filterConfig(), taskConfig()方法中完成，并储存于您预设的配置文件中。
-2. 若您需要修改已存在的配置文件，则需要将配置文件的路径作为构造参数传入并创建Pixiv对象，并在该对象的filterConfig()与taskConfig()方法中修改你的配置。
-3. 多个配置可以同时以文件形式存在，这意味着你可以在任何一处配置文件后，通过文件路径全局调用你的预期配置。
-
-## 疑难解惑
-___
 ### 1. 如何查看cookie？
 > **step 1:** 使用任意浏览器登陆[Pixiv](https://www.pixiv.net)并进入主页面  
 > **step 2:** 在上方网址输入框输入`javascript:alert(document.cookie)`并确定 (由于javascript:会被自动清除，请务必手动输入)  
 > **step 3:** 全选方框的内容并复制，将其并传入pixiv的setCookie方法中
+### 2. Pixiv库的配置是如何工作的？文件需要提前配置吗？
+> 1. Pixiv类的构造参数(Path settingFilePath)的目的在于预设配置文件位置，这意味着您无需提前配置好文件，甚至不需要提前创建好文件。   
+> 创建与配置工作将分别在构造方法与filterConfig(), taskConfig()方法中完成，并储存于您预设的配置文件中。  
+> 2. 若您需要修改已存在的配置文件，则需要将配置文件的路径作为构造参数传入并创建Pixiv对象，并在该对象的filterConfig()与taskConfig()方法中修改你的配置。
+> 3. 若您需要加载并使用已有配置，请将预设配置文件的路径传入Pixiv的构造方法中，并调用Pixiv的download()方法。
+
+安装
+---
+1. 点击[Release](https://github.com/Ita-Ya/Pixiv/releases/download/lib/pixiv-1.0-SNAPSHOT.jar)下载jar包。
+2. 在您的项目目录下创建libs文件夹，并将您在step 1下载的jar包导入进libs文件夹 
+3. 添加配置进项目配置文件中  
+*如果您使用 Maven，将以下代码片段添加到 pom.xml 文件的 <dependencies> 标签中:*  
+   ```
+   <dependency>
+       <groupId>org.kyaru</groupId>
+       <artifactId>pixiv</artifactId>
+       <version>1.0.0</version>
+       <scope>system</scope>
+       <systemPath>${project.basedir}/libs/library.jar</systemPath>
+   </dependency>
+   ```
+   *如果您使用 Gradle，将以下代码片段添加到 build.gradle 文件的 dependencies 部分：*
+   ```
+   dependencies {
+   implementation files('pixiv-1.0-SNAPSHOT.jar')
+   }
+   ```
+4.保存配置文件 (安装完成)
 
 
 
